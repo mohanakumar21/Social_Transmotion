@@ -1,0 +1,32 @@
+SEED: 0
+TRAIN:
+    batch_size: 4
+    epochs: 50
+    num_workers: 0
+    input_track_size: 9
+    output_track_size: 12
+    lr: 0.0001
+    lr_decay: 1
+    lr_drop: true
+    aux_weight: 0.2
+    val_frequency: 5
+    optimizer: "adam"
+    max_grad_norm: 1.0
+DATA:
+    train_datasets:
+        - jta_all_visual_cues
+MODEL:
+    seq_len: 30 # 21 trajectory tokens + 9 pooled 3D-pose tokens (one per observed frame)
+    token_num: 47 # data layout: 1 traj + 2 boxes + 22 3D joints + 22 2D joints. Keep 47.
+    num_layers_local: 6
+    num_layers_global: 3
+    num_heads: 4
+    dim_hidden: 128
+    dim_feedforward: 1024
+    type: "transmotion_pooled"
+    eval_single: false
+    checkpoint: ""
+    output_scale: 1
+    mask_ratio_traj: 0.1
+    mask_ratio: 0.1
+    mask_ratio_modality: 0.3

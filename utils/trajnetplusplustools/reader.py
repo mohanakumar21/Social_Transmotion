@@ -1,4 +1,4 @@
-from collections import defaultdict
+﻿from collections import defaultdict
 import itertools
 import json
 import random
@@ -46,7 +46,7 @@ class Reader_jrdb_2dbox(object):
         if limit:
             scene_ids = itertools.islice(scene_ids, limit)
         if sample is not None:
-            scene_ids = random.sample(scene_ids, int(len(scene_ids) * sample))
+            scene_ids = random.sample(sorted(scene_ids), int(len(scene_ids) * sample))
         for scene_id in scene_ids:
             yield self.scene(scene_id)
     @staticmethod
@@ -170,7 +170,7 @@ class Reader_jta_all_visual_cues(object):
         if limit:
             scene_ids = itertools.islice(scene_ids, limit)
         if sample is not None:
-            scene_ids = random.sample(scene_ids, int(len(scene_ids) * sample))
+            scene_ids = random.sample(sorted(scene_ids), int(len(scene_ids) * sample))
         for scene_id in scene_ids:
             yield self.scene(scene_id)
     @staticmethod
